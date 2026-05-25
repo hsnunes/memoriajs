@@ -1,0 +1,53 @@
+.grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 15px;
+    width: 100%;
+    max-width: 800px;
+    margin: 20px auto;
+}
+
+.card {
+    /* Utilizar aspect-ratio para manter a proporção da imagem, ao invés do height */
+    aspect-ratio: 3/4;
+    width: 100%;
+    border-radius: 5px;
+    position: relative;
+    transition: all 400ms ease;
+    transform-style: preserve-3d;
+}
+
+.face {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    border-radius: 5px;
+    border: 2px solid #39813a;
+    transition: all 400ms ease;
+}
+
+.front {
+    transform: rotateY(180deg);
+}
+
+.back {
+    background-image: url('../img/back.jpg');
+    backface-visibility: hidden;
+}
+
+/* Classe para mostrar cartas como desativadas */
+.disabled-card {
+    filter: saturate(0);
+    opacity: 0.5;
+}
+
+.reveal-card {
+    transform: rotateY(180deg);
+}
+
+/* As cartas serão reveladas ao clicar, então a classe .reveal-card será adicionada dinamicamente via JavaScript. A propriedade transform: rotateY(180deg) fará com que a carta gire, mostrando a face frontal. A propriedade backface-visibility: hidden; na classe .back garante que a face de trás da carta não seja visível quando a carta estiver virada. */
+/* .card:hover {
+    transform: rotateY(180deg);
+} */
