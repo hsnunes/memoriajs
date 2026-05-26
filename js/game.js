@@ -1,5 +1,7 @@
 
 const gridTpl = document.querySelector('.grid');
+const spanPlayer = document.querySelector('.player');
+const timer = document.querySelector('.timer');
 
 const photos = [
     'ancora',
@@ -32,9 +34,11 @@ const checkEndGame = () => {
     const disabledCards = document.querySelectorAll('.disabled-card');
     if (disabledCards.length === photos.length * 2) {
         setTimeout(() => {
-            alert('Parabéns, você venceu!');
-            gridTpl.innerHTML = '';
-            loadGame();
+            clearInterval(this.loop);
+            alert(`Parabéns, ${localStorage.getItem('gamer')}! Seu tempo foi: ${timer.innerHTML}`);
+            // gridTpl.innerHTML = '';
+            // loadGame();
+            location.reload();
         }, 500);
     }
 }
@@ -107,4 +111,15 @@ const loadGame = () => {
     });
 }
 
-loadGame();
+const startTimer = () => {
+    this.loop = setInterval(() => {
+        const currentTime = +timer.innerHTML;
+        timer.innerHTML = currentTime + 1;
+    }, 1000);
+}
+
+window.onload = () => {
+    spanPlayer.innerHTML = localStorage.getItem('gamer');
+    startTimer();
+    loadGame();
+}

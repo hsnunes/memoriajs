@@ -21,6 +21,7 @@ const handleSubmit = (e) => {
     e.preventDefault();
     // Lógica para lidar com o envio do formulário
     localStorage.setItem('gamer', inputNome.value);
+    // Redirecinar para a página do jogo com "./diretorioAlvo/nomePagina.html"
     window.location = "./pages/game.html";
 }
 
